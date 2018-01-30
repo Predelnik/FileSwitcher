@@ -24,7 +24,7 @@ if (MSVC)
   SET_SOURCE_FILES_PROPERTIES("src/stdafx.cpp" PROPERTIES COMPILE_FLAGS "/Yc")
 endif ()
 
-target_include_directories (FileSwitcher PUBLIC Common/Ccpp/ src )
+target_include_directories (FileSwitcher PUBLIC Common/Ccpp/ src res)
 
 set(FileSwitcher_DLL_OUTPUT_PATH "" CACHE STRING "Output for debug library (Possibly notepad++ plugin folder)")
 if (NOT ${FileSwitcher_DLL_OUTPUT_PATH} STREQUAL "")

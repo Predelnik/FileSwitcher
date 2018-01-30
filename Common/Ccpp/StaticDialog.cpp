@@ -89,7 +89,7 @@ INT_PTR CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, L
 		{
 			StaticDialog *pStaticDlg = (StaticDialog *)(lParam);
 			pStaticDlg->_hSelf = hwnd;
-			::SetWindowLong(hwnd, GWLP_USERDATA, (long)lParam);
+			::SetWindowLongPtr(hwnd, GWLP_USERDATA, lParam);
 			::GetWindowRect(hwnd, &(pStaticDlg->_rc));
             pStaticDlg->run_dlgProc(hwnd, message, wParam, lParam);
 
@@ -98,7 +98,7 @@ INT_PTR CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, L
 
 		default :
 		{
-			StaticDialog *pStaticDlg = reinterpret_cast<StaticDialog *>(::GetWindowLong(hwnd, GWLP_USERDATA));
+			StaticDialog *pStaticDlg = reinterpret_cast<StaticDialog *>(::GetWindowLongPtr(hwnd, GWLP_USERDATA));
 			if (!pStaticDlg)
 				return FALSE;
 			return pStaticDlg->run_dlgProc(hwnd, message, wParam, lParam);
