@@ -24,12 +24,12 @@ public:
 	~ConfigDialog(void) {}
 
 protected :
-	virtual BOOL CALLBACK run_dlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	virtual INT_PTR CALLBACK run_dlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
 	NppData			_nppData;
     HWND			_HSource;
-	
+
 	BOOL			_isModal;
 
 	struct options_t *_options;

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <map>
 #include "StaticDialog.h"
 #include "EditFile.h"
-#include "resource.h" 
+#include "resource.h"
 #include "FileSwitcher.h"
 #include "FileListView.h"
 #include "ConfigDialog.h"
@@ -32,10 +32,10 @@ class SwitchDialog : public StaticDialog
 {
 
 public:
-	
+
 	SwitchDialog() : StaticDialog() {};
-    
-	
+
+
 
 	void init(HINSTANCE hInst, NppData nppData, struct options_t *options, std::map<int, TCHAR *> *typedForFile, ConfigDialog *configDlg)
 	{
@@ -45,7 +45,7 @@ public:
 
 		// Flag that the dimensions and position have not been set
 		_dialogX = -1;
-		
+
 		_typedForFile = typedForFile;
 
 		_options = options;
@@ -63,9 +63,9 @@ public:
 	//void setColumnWidths(TCHAR *buffer);
 
     virtual void destroy() {};
-	
+
 protected :
-	virtual BOOL CALLBACK run_dlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	virtual INT_PTR CALLBACK run_dlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	virtual void showAndPositionWindow(void);
 
 private:
@@ -136,20 +136,20 @@ private:
 	void updateWindowPosition(void);
 	void switchToSelectedBuffer(void);
 	void setupColumnWidths(EditFileContainer &editFiles);
-	
+
 	int getCurrentIndex(int currentView);
 	int getCurrentView(void);
 
 	/* Constants */
 	static const int SEARCH_STRING_BUFFER_MAX = 255;
 	static const int COLUMN_PADDING = 30;
-	
-	
-	
 
-	
-    
-		
+
+
+
+
+
+
 
 
 	};

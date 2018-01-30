@@ -32,7 +32,7 @@ public :
 
 	void create(HINSTANCE hInst, int iconSize) {_iconSize = iconSize;
 		_hInst = hInst;
-		InitCommonControls(); 
+		InitCommonControls();
 		_hImglst = ImageList_Create(iconSize, iconSize, ILC_COLOR32 | ILC_MASK, 0, nbMax);
 		if (!_hImglst)
 			throw int(25);
@@ -65,7 +65,7 @@ public :
 	};
 
 	bool changeIcon(int index, const char *iconLocation) const{
-		HBITMAP hBmp = (HBITMAP)::LoadImage(_hInst, iconLocation, IMAGE_ICON, _iconSize, _iconSize, LR_LOADFROMFILE | LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
+		HBITMAP hBmp = (HBITMAP)::LoadImageA(_hInst, iconLocation, IMAGE_ICON, _iconSize, _iconSize, LR_LOADFROMFILE | LR_LOADMAP3DCOLORS | LR_LOADTRANSPARENT);
 		if (!hBmp)
 			return false;
 		int i = ImageList_ReplaceIcon(_hImglst, index, (HICON)hBmp);
@@ -81,7 +81,7 @@ public :
 		int i = ImageList_ReplaceIcon(_hImglst, index, (HICON)hBmp);
 		::DeleteObject(hBmp);
 		return (i == index);
-	};*/	
+	};*/
 
 /*
 	void addImage(int iconID) const {
@@ -104,8 +104,8 @@ private :
 	int _iconSize;
 };
 
-typedef struct 
-{	
+typedef struct
+{
 	int _cmdID;
 
 	int _defaultIcon;
@@ -197,7 +197,7 @@ public :
 		if ((witchList != HLIST_DEFAULT) && (witchList != HLIST_HOT) && (witchList != HLIST_DISABLE))
 			return false;
 		return _iconListVector[witchList].changeIcon(iconIndex, iconLocation);
-		
+
 	};
 
 private :

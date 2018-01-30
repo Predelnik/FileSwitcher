@@ -71,7 +71,7 @@ public :
 	ToolBar():Window(), _pTBB(NULL){};
 	virtual ~ToolBar(){};
 
-	virtual bool init(HINSTANCE hInst, HWND hPere, int iconSize, 
+	virtual bool init(HINSTANCE hInst, HWND hPere, int iconSize,
 		ToolBarButtonUnit *buttonUnitArray, int arraySize,
 		bool doUglyStandardIcon = false, int *bmpArray = NULL, int bmpArraySize = 0);
 
@@ -108,7 +108,7 @@ public :
 	void reduce() {
 		if (_state == TB_SMALL)
 			return;
-		// I really don't know why we have to enlarge then reduce 
+		// I really don't know why we have to enlarge then reduce
 		// to take the effect.
 		if (_state == TB_STANDARD)
 			_toolBarIcons.resizeIcon(32);
@@ -182,9 +182,9 @@ private :
 	void setButtonSize(int w, int h) {
 		::SendMessage(_hSelf, TB_SETBUTTONSIZE , (WPARAM)0, (LPARAM)MAKELONG (w, h));
 	};
-	
+
 	void reset();
-	
+
 };
 
 class ReBar : public Window
@@ -202,7 +202,7 @@ public :
 
 		_rbBand.fStyle  = RBBS_CHILDEDGE;
 		_rbBand.hbmBack = NULL;
-		_rbBand.lpText     = "Toolbar";
+		_rbBand.lpText     = L"Toolbar";
 	};
 
 	virtual void destroy() {

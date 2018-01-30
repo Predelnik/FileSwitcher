@@ -43,14 +43,14 @@ HGLOBAL StaticDialog::makeRTLResource(int dialogID, DLGTEMPLATE **ppMyDlgTemplat
 	HRSRC  hDialogRC = ::FindResource(_hInst, MAKEINTRESOURCE(dialogID), RT_DIALOG);
 	HGLOBAL  hDlgTemplate = ::LoadResource(_hInst, hDialogRC);
 	DLGTEMPLATE *pDlgTemplate = (DLGTEMPLATE *)::LockResource(hDlgTemplate);
-	
+
 	// Duplicate Dlg Template resource
 	unsigned long sizeDlg = ::SizeofResource(_hInst, hDialogRC);
 	HGLOBAL hMyDlgTemplate = ::GlobalAlloc(GPTR, sizeDlg);
 	*ppMyDlgTemplate = (DLGTEMPLATE *)::GlobalLock(hMyDlgTemplate);
 
 	::memcpy(*ppMyDlgTemplate, pDlgTemplate, sizeDlg);
-	
+
 	DLGTEMPLATEEX *pMyDlgTemplateEx = (DLGTEMPLATEEX *)*ppMyDlgTemplate;
 	if (pMyDlgTemplateEx->signature == 0xFFFF)
 		pMyDlgTemplateEx->exStyle |= WS_EX_LAYOUTRTL;
@@ -81,24 +81,24 @@ void StaticDialog::create(int dialogID, bool isRTL)
 	::SendMessage(_hParent, NPPM_MODELESSDIALOG, MODELESSDIALOGADD, (WPARAM)_hSelf);
 }
 
-BOOL CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
+INT_PTR CALLBACK StaticDialog::dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	switch (message) 
+	switch (message)
 	{
 		case WM_INITDIALOG :
 		{
 			StaticDialog *pStaticDlg = (StaticDialog *)(lParam);
 			pStaticDlg->_hSelf = hwnd;
-			::SetWindowLong(hwnd, GWL_USERDATA, (long)lParam);
+			::SetWindowLong(hwnd, GWLP_USERDATA, (long)lParam);
 			::GetWindowRect(hwnd, &(pStaticDlg->_rc));
             pStaticDlg->run_dlgProc(hwnd, message, wParam, lParam);
-			
+
 			return TRUE;
 		}
 
 		default :
 		{
-			StaticDialog *pStaticDlg = reinterpret_cast<StaticDialog *>(::GetWindowLong(hwnd, GWL_USERDATA));
+			StaticDialog *pStaticDlg = reinterpret_cast<StaticDialog *>(::GetWindowLong(hwnd, GWLP_USERDATA));
 			if (!pStaticDlg)
 				return FALSE;
 			return pStaticDlg->run_dlgProc(hwnd, message, wParam, lParam);
@@ -136,6 +136,6 @@ void StaticDialog::alignWith(HWND handle, HWND handle2Align, PosAlign pos, POINT
             point.y += rc2.bottom - rc2.top;
             break;
     }
-    
+
     ::ScreenToClient(_hSelf, &point);
 }

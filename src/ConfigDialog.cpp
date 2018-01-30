@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "ConfigDialog.h"
-#include "resource.h" 
+#include "resource.h"
 
 
 
@@ -85,8 +85,8 @@ void ConfigDialog::initialiseOptions()
 			::SendDlgItemMessage(_hSelf, IDC_RADIOSORTREMEMBER, BM_SETCHECK, BST_CHECKED, 0);
 			EnableWindow(GetDlgItem(_hSelf, IDC_CHECKRESETSORTORDER), FALSE);
 			EnableWindow(GetDlgItem(_hSelf, IDC_CHECKSORTDESCENDING), FALSE);
-			
-			break;    
+
+			break;
 	}
 
 	if (_options->defaultSortOrder & REVERSE_SORT_ORDER && _options->defaultSortOrder != ALWAYSREMEMBER)
@@ -124,7 +124,7 @@ void ConfigDialog::initialiseOptions()
 	else
 		::SendDlgItemMessage(_hSelf, IDC_CHECKAUTOSIZEWINDOW, BM_SETCHECK, BST_UNCHECKED, 0);
 
-	
+
 	if (_options->columnForView)
 		::SendDlgItemMessage(_hSelf, IDC_CHECKSEPARATECOLUMNFORVIEW, BM_SETCHECK, BST_CHECKED, 0);
 	else
@@ -144,7 +144,7 @@ void ConfigDialog::initialiseOptions()
 		::EnableWindow(GetDlgItem(_hSelf, IDC_CHECKOVERRIDESORTWHENTABBING), TRUE);
 		::EnableWindow(GetDlgItem(_hSelf, IDC_CHECKREVERTSORTORDERDURINGTABBING), TRUE);
 		::EnableWindow(GetDlgItem(_hSelf, IDC_CHECKNODIALOGFORCTRLTAB), TRUE);
-*/	
+*/
 
 		if (_options->overrideSortWhenTabbing)
 		{
@@ -194,11 +194,11 @@ void ConfigDialog::initialiseOptions()
 
 
 
-BOOL CALLBACK ConfigDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK ConfigDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
 	LRESULT result;
 
-	switch (Message) 
+	switch (Message)
 	{
         case WM_INITDIALOG :
 		{
@@ -206,13 +206,13 @@ BOOL CALLBACK ConfigDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, 
 			goToCenter();
 			return TRUE;
 		}
-		
-	
 
-		case WM_COMMAND : 
+
+
+		case WM_COMMAND :
 		{
-			
-				
+
+
 				switch (LOWORD(wParam))
 				{
 					case IDC_RADIOSORTREMEMBER:
@@ -301,7 +301,7 @@ BOOL CALLBACK ConfigDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, 
 						result = ::SendDlgItemMessage(_hSelf, IDC_RADIOSORTREMEMBER, BM_GETCHECK, 0, 0);
 						if (BST_CHECKED == result)
 							_options->defaultSortOrder = ALWAYSREMEMBER;
-						else 
+						else
 						{
 							result = ::SendDlgItemMessage(_hSelf, IDC_CHECKSORTDESCENDING, BM_GETCHECK, 0, 0);
 							if (BST_CHECKED == result)
@@ -363,7 +363,7 @@ BOOL CALLBACK ConfigDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, 
 						else
 							_options->useHomeForEdit = FALSE;
 
-						
+
 
 					case IDCANCEL :
 						if (_isModal)
@@ -375,7 +375,7 @@ BOOL CALLBACK ConfigDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, 
 					default :
 						break;
 				}
-			
+
 		}
 	}
 	return FALSE;

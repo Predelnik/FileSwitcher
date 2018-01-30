@@ -23,7 +23,7 @@ const bool ToolBar::REDUCED = true;
 const bool ToolBar::ENLARGED = false;
 const int WS_TOOLBARSTYLE = WS_CHILD | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | TBSTYLE_TOOLTIPS | TBSTYLE_FLAT | CCS_TOP;
 
-bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize, 
+bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
 				   ToolBarButtonUnit *buttonUnitArray, int arraySize,
 				   bool doUglyStandardIcon, int *bmpArray, int bmpArraySize)
 {
@@ -34,7 +34,7 @@ bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
 
 	_toolBarIcons.init(buttonUnitArray, arraySize);
 	_toolBarIcons.create(_hInst, iconSize);
-	
+
 	INITCOMMONCONTROLSEX icex;
 	icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
 	icex.dwICC  = ICC_WIN95_CLASSES|ICC_COOL_CLASSES|ICC_BAR_CLASSES|ICC_USEREX_CLASSES;
@@ -43,7 +43,7 @@ bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
 	_hSelf = ::CreateWindowEx(
 	               WS_EX_PALETTEWINDOW,
 	               TOOLBARCLASSNAME,
-	               "",
+	               L"",
 	               WS_TOOLBARSTYLE,
 	               0, 0,
 	               0, 0,
@@ -59,10 +59,10 @@ bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
 		throw int(9);
 	}
 
-	// Send the TB_BUTTONSTRUCTSIZE message, which is required for 
+	// Send the TB_BUTTONSTRUCTSIZE message, which is required for
 	// backward compatibility.
 	::SendMessage(_hSelf, TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
-	
+
 	/* set ext size to show button down */
 	LONG	exStyle = (LONG)::SendMessage(_hSelf, TB_GETEXTENDEDSTYLE, 0, 0);
 	::SendMessage(_hSelf, TB_SETEXTENDEDSTYLE, 0, exStyle | TBSTYLE_EX_DRAWDDARROWS);
@@ -86,10 +86,10 @@ bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
 				::SendMessage(_hSelf, TB_ADDBITMAP, 1, (LPARAM)&addbmp);
 			}
 		}
-		
+
 	}
 	int nbElement = _toolBarIcons.getNbCommand();
-	
+
 	_pTBB = new TBBUTTON[nbElement];
 	int inc = 1;
 
@@ -118,20 +118,20 @@ bool ToolBar::init(HINSTANCE hInst, HWND hPere, int iconSize,
 		_pTBB[i].iBitmap = bmpIndex;
 		_pTBB[i].idCommand = cmd;
 		_pTBB[i].fsState = TBSTATE_ENABLED;
-		_pTBB[i].fsStyle = style; 
-		_pTBB[i].dwData = 0; 
+		_pTBB[i].fsStyle = style;
+		_pTBB[i].dwData = 0;
 		_pTBB[i].iString = 0;
 
 	}
 
 	setButtonSize(iconSize, iconSize);
-	::SendMessage(_hSelf, TB_ADDBUTTONS, (WPARAM)nbElement, (LPARAM)_pTBB); 
+	::SendMessage(_hSelf, TB_ADDBUTTONS, (WPARAM)nbElement, (LPARAM)_pTBB);
 	::SendMessage(_hSelf, TB_AUTOSIZE, 0, 0);
 
 	return true;
 }
 
-void ToolBar::reset() 
+void ToolBar::reset()
 {
 	setDefaultImageList();
 	setHotImageList();
@@ -164,21 +164,21 @@ void ToolBar::reset()
 			_pTBB[i].iBitmap = bmpIndex;
 			_pTBB[i].idCommand = cmd;
 			_pTBB[i].fsState = TBSTATE_ENABLED;
-			_pTBB[i].fsStyle = style; 
-			_pTBB[i].dwData = 0; 
+			_pTBB[i].fsStyle = style;
+			_pTBB[i].dwData = 0;
 			_pTBB[i].iString = 0;
 
 		}
 
-		::SendMessage(_hSelf, TB_ADDBUTTONS, (WPARAM)nbElement, (LPARAM)_pTBB); 
+		::SendMessage(_hSelf, TB_ADDBUTTONS, (WPARAM)nbElement, (LPARAM)_pTBB);
 	}
 
 	::SendMessage(_hSelf, TB_AUTOSIZE, 0, 0);
 }
 
-void ToolBar::setToUglyIcons() 
+void ToolBar::setToUglyIcons()
 {
-	if (_state == TB_STANDARD) 
+	if (_state == TB_STANDARD)
 		return;
 
 	// Due to the drawback of toolbar control (in-coexistence of Imagelist - custom icons and Bitmap - Std icons),
@@ -190,7 +190,7 @@ void ToolBar::setToUglyIcons()
 	_hSelf = ::CreateWindowEx(
 	               WS_EX_PALETTEWINDOW ,
 	               TOOLBARCLASSNAME,
-	               "",
+	               L"",
 	               WS_TOOLBARSTYLE|TBSTYLE_WRAPABLE,
 	               0, 0,
 	               0, 0,
@@ -205,7 +205,7 @@ void ToolBar::setToUglyIcons()
 		throw int(9);
 	}
 
-	// Send the TB_BUTTONSTRUCTSIZE message, which is required for 
+	// Send the TB_BUTTONSTRUCTSIZE message, which is required for
 	// backward compatibility.
 	::SendMessage(_hSelf, TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
 
@@ -247,15 +247,15 @@ void ToolBar::setToUglyIcons()
 		_pTBB[i].iBitmap = bmpIndex;
 		_pTBB[i].idCommand = cmd;
 		_pTBB[i].fsState = TBSTATE_ENABLED;
-		_pTBB[i].fsStyle = style; 
-		_pTBB[i].dwData = 0; 
+		_pTBB[i].fsStyle = style;
+		_pTBB[i].dwData = 0;
 		_pTBB[i].iString = 0;
 
 	}
 
 	setButtonSize(16, 16);
 
-	::SendMessage(_hSelf, TB_ADDBUTTONS, (WPARAM)nbElement, (LPARAM)_pTBB); 
+	::SendMessage(_hSelf, TB_ADDBUTTONS, (WPARAM)nbElement, (LPARAM)_pTBB);
 	::SendMessage(_hSelf, TB_AUTOSIZE, 0, 0);
 	_state = TB_STANDARD;
 }

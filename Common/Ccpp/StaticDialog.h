@@ -29,10 +29,10 @@ struct DLGTEMPLATEEX {
       WORD   signature;
       DWORD  helpID;
       DWORD  exStyle;
-      DWORD  style; 
+      DWORD  style;
       WORD   cDlgItems;
       short  x;
-      short  y;    
+      short  y;
       short  cx;
       short  cy;
       // The structure has more fields but are variable length
@@ -60,8 +60,8 @@ public :
 
 protected :
 	RECT _rc;
-	static BOOL CALLBACK dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-	virtual BOOL CALLBACK run_dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) = 0;
+	static INT_PTR CALLBACK dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+	virtual INT_PTR CALLBACK run_dlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) = 0;
 
     void alignWith(HWND handle, HWND handle2Align, PosAlign pos, POINT & point);
 	HGLOBAL makeRTLResource(int dialogID, DLGTEMPLATE **ppMyDlgTemplate);

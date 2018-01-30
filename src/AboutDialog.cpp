@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "AboutDialog.h"
-#include "resource.h" 
+#include "resource.h"
 
 AboutDialog::AboutDialog(void)
 {
@@ -19,21 +19,21 @@ void AboutDialog::doDialog()
 }
 
 
-BOOL CALLBACK AboutDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK AboutDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
-	switch (Message) 
+	switch (Message)
 	{
         case WM_INITDIALOG :
 		{
 			return TRUE;
 		}
-		
 
 
-		case WM_COMMAND : 
+
+		case WM_COMMAND :
 		{
-			
-				
+
+
 				switch (wParam)
 				{
 					case IDOK :
@@ -44,7 +44,7 @@ BOOL CALLBACK AboutDialog::run_dlgProc(HWND hWnd, UINT Message, WPARAM wParam, L
 					default :
 						break;
 				}
-			
+
 		}
 	}
 	return FALSE;
