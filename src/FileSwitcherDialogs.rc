@@ -2,15 +2,15 @@
 //
 #include "resource.h"
 
-#define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
-
-/////////////////////////////////////////////////////////////////////////////
-#undef APSTUDIO_READONLY_SYMBOLS
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#include <commctrl.h>
+#include <richedit.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
 // English (U.S.) resources
@@ -20,31 +20,6 @@
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
 #endif //_WIN32
-
-#ifdef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// TEXTINCLUDE
-//
-
-1 TEXTINCLUDE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE 
-BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
-END
-
-3 TEXTINCLUDE 
-BEGIN
-    "\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
 
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
@@ -69,31 +44,31 @@ STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU 
 EXSTYLE WS_EX_PALETTEWINDOW
 CAPTION "File Switcher"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
-BEGIN
-    DEFPUSHBUTTON   "&OK",IDOK,281,7,50,14,NOT WS_TABSTOP
-    PUSHBUTTON      "&Cancel",IDCANCEL,281,24,50,14,NOT WS_TABSTOP
+{
+    DEFPUSHBUTTON   "&OK",IDOK,281,7,50,14,WS_TABSTOP
+    PUSHBUTTON      "&Cancel",IDCANCEL,281,24,50,14,WS_TABSTOP
     EDITTEXT        IDC_FILEEDIT,7,7,269,14,ES_AUTOHSCROLL
     CONTROL         "",IDC_LISTVIEW,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,23,270,139
     PUSHBUTTON      "O&ptions",IDC_OPTIONS,281,148,50,14
-END
+}
 
 IDD_ABOUTDIALOG DIALOGEX 0, 0, 209, 65
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About File Switcher"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
-BEGIN
+{
     DEFPUSHBUTTON   "OK",IDOK,152,7,50,14
     LTEXT           "File Switcher 1.0.3.0",IDC_STATIC,7,7,124,8
     LTEXT           "Author: Dave Brotherstone",IDC_STATIC,7,29,88,8
     LTEXT           "davegb@pobox.com",IDC_STATIC,33,39,67,8
     LTEXT           "June 2009",IDC_STATIC,7,17,34,8
-END
+}
 
 IDD_CONFIGDIALOG DIALOGEX 0, 0, 453, 242
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "File Switcher Search Options"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
-BEGIN
+{
     CONTROL         "&Case sensitive search",IDC_CHECKCASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,14,85,10
     CONTROL         "Only look at &start of filename and/or path",IDC_CHECKSTARTONLY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,32,149,10
@@ -129,7 +104,7 @@ BEGIN
     LTEXT           "Ctrl-Tab functionality is enabled",IDC_LABELCTRLTAB,191,16,189,62,NOT WS_VISIBLE
     CONTROL         "Use Home / End Keys for Text box",IDC_CHECKUSEHOMEFOREDIT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,110,126,10
-END
+}
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -139,7 +114,7 @@ END
 
 #ifdef APSTUDIO_INVOKED
 GUIDELINES DESIGNINFO 
-BEGIN
+{
     IDD_SWITCHDIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -163,7 +138,7 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 234
     END
-END
+}
 #endif    // APSTUDIO_INVOKED
 
 
