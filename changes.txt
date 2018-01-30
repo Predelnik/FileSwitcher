@@ -1,0 +1,73 @@
+File Switcher 
+
+1.0.3.0 
++ FIXED    Use new NPPN_READONLYCHANGED message from Notepad++ 5.4.3 onwards so folds and position is kept when switching docs
++ ADDED    Home/End keys now have an option to default to either the editbox or the listview.  Ctrl-Home/Ctrl-End will use the other one
++ FIXED    Many warnings cleaned up, still lots, but half of them are cleared.
+
+
+1.0.2.0
++ CHANGED  Made colour of selection dark blue, as windows default (patch from ssgsmt)
++ CHANGED  Made home and end keys do default in the edit box
+
+
+1.0.1.1
++ FIXED    Crash bug with closing files (showed up with opening a session)
+
+
+1.0.1.0
++ CHANGED  Switch to next document and Switch to previous document now the other way around (previous first)
++ FIXED    Ctrl-Tab wiping out pretyped text
++ FIXED    Document selection and scroll position being wiped out when switching 
+           (with or without the file switcher)
++ FIXED    Ctrl-(sh)-Tab not highlighting the correct document initially
++ FIXED    Sort-descending was selected after selecting "Always Remember"
+ 
+
+1.0
+
++ ADDED Save column order
++ ADDED Save column sizes
++ ADDED Option to include view in search
++ ADDED Option to show view as separate column
++ ADDED Read only status now shown (thanks to almostautomated for his help on this)
++ ADDED Option to Ctrl-tab without showing window (tab order only for now)
+
++ FIXED Page up / page down keys now work as expected
++ FIXED Order / file index column title - should have been "Index" to be consistent
++ FIXED Bug with ctrl-tab highlight selection (found by fool4uanyway)
+
+
+0.6.0.1
++ FIXED options button on switch dialog
++ FIXED possible crash-bug when opening a file (noticed by singx7)
+
+0.6
+
++ Now uses a list view instead of a list box, so you can sort by the column you want 
++ Shows file status 
++ Supports Ctrl-Tab emulation, but will allow typing whilst ctrl-tabbing 
++ Supports multiple views (options to show files from just the current view, or both views) 
++ Automatic resizing of columns (optional) 
++ Allows selection of default sort orders, or remembering your previous 
++ Added options button to the switcher dialog 
++ Options for what to include in search (filename, path, tab order) 
+
+
+0.2
+
+Features:
++ Added option for searching only the start of the filename
++ Added option for case sensitivity
++ Added option for including the path in the search
++ Remember what was typed for each buffer (doesn't work in ANSI version)
++ Remember window position between sessions
+
+Bugs:
++ Fixed issue with case sensitivity
++ Fixed window position resetting each time dialog was shown
+
+
+0.1
+
+Initial release.
